@@ -6,11 +6,17 @@ var john = {
   birthYear : 1990,
   family : ['Jane', 'Mark', 'Bob', 'Emily'],
   job : 'teacher',
-  isMarried : false
+  isMarried : false,
+  calcAge : function() {
+    this.age = 2019 - this.birthYear;
+  }
 };
 
-console.log(john.family[2]);
+// console.log(john.family[2]);
 
-john.job = 'designer';
+// john.job = 'designer';
 
-console.log(john.job);
+// console.log(john.job);
+
+john.calcAge();
+console.log(john.age)
