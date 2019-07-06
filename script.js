@@ -1,23 +1,27 @@
-// arrays
+// challenge 3
 
-var names = ['John', 'Mark', 'Jane'];
-var years = [1999, 1994, 1992];
+var bills = [124, 48, 268]
+var tips = []
+var finalBills = []
 
-console.log(names.length);
+function calculateTip(bill){
+  var tip;
+  if (bill < 50){
+    tip = bill * 0.2
+  } else if (bill >= 50 && bill < 200){
+    tip = bill * 0.15
+  } else{
+    tip = bill * 0.1
+  }
+  return tip
+}
 
-names[names.length-1] = 'Ben';
+for (bill of bills) {
+  var finalTip = calculateTip(bill)
+  var amount = bill + finalTip
+  tips.push(finalTip)
+  finalBills.push(amount)
+}
 
-console.log(names);
 
-var john = ['John', 'Smith', 1990, 'teacher', false];
-
-john.push('blue');
-john.unshift('Mr.');
-john.pop();
-john.shift();
-
-console.log(john);
-
-var isDesigner = john.indexOf('designer') === -1 ? 'John is not a designer'
-  : 'John is a designer.';
-  console.log(isDesigner);
+console.log(tips, finalBills)
