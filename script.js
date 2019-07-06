@@ -1,36 +1,34 @@
-/*
-var firstName = 'Dide';
-
-console.log(firstName)
-
-var lastName = 'Mertens';
-var age = 26;
-
-var fullAge = true;
-console.log(fullAge);
-
-var job;
-console.log(job);
-*/
-
-
 // Variables mutation and type coercion
 
-var firstName = 'John';
-var age = 28;
+// var firstName = 'John';
+// var age = 28;
 
-console.log(firstName + "'s age is " + age);
+// console.log(firstName + "'s age is " + age);
 
-var job, isMarried;
-job = 'teacher';
-isMarried = false;
+// var job, isMarried;
+// job = 'teacher';
+// isMarried = false;
 
-console.log(job + '. Is he maried? ' + isMarried)
+// console.log(job + '. Is he maried? ' + isMarried)
 
-age = 'twenty eight';
-job = 'driver';
+// age = 'twenty eight';
+// job = 'driver';
 
-alert(age + job);
+// alert(age + job);
 
-var lastName = prompt('What is his last name?');
-console.log(firstName + ' ' + lastName)
+// var lastName = prompt('What is his last name?');
+// console.log(firstName + ' ' + lastName)
+
+
+// Basic operators
+// var year, ageJohn, ageMark;
+// year = 2019;
+// ageJohn = 26;
+// ageMark = 30;
+
+
+// var johnOlder = ageJohn > ageMark;
+// console.log(johnOlder);
+
+// // typeof operator
+// console.log(typeof johnOlder);
