@@ -9,17 +9,44 @@ x++;
 
 */
 
-// Boolean logic
+// ternary operator
 
 var firstName = 'John';
-var age = 26;
+var age = 12;
 
-if (age < 13 ){
-  console.log(firstName + ' is a boy.')
-} else if (age >= 13 && age < 20) {
-  console.log(firstName + ' is a teenager.')
-} else if (age >= 20 && age < 30) {
-  console.log(firstName + ' is a young man.')
-} else{
-  console.log(firstName + ' is a man.')
+// age >= 18 ? console.log(firstName + ' drinks beer.')
+// : console.log(firstName + ' drinks juice.')
+
+var drink = age >= 18 ? 'beer' : 'juice';
+
+console.log(firstName + ' drinks ' + drink + '.')
+
+
+// Switch statement
+var job = 'gardener';
+switch (job) {
+  case 'teacher':
+    console.log(firstName + ' teaches children.');
+    break;
+  case 'driver':
+    console.log(firstName + ' drives a car.');
+    break;
+  case 'designer':
+    console.log(firstName + ' makes websites.');
+    break;
+  default:
+    console.log(firstName + ' does something else');
+}
+
+age = 8;
+
+switch (true) {
+  case age < 13:
+    console.log('boy');
+    break;
+  case age >= 13 && age < 20:
+    console.log('teenager');
+    break;
+  default:
+    console.log('man');
 }
