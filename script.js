@@ -1,18 +1,18 @@
-// functions
+// function statements and expressions
 
-function calculateAge(birthYear) {
-  return 2019 - birthYear;
-}
+// first declaration
+// function whatDoYouDo(job,firstName){}
 
-function yearsUntilRetirement(year, firstName) {
-  var age = calculateAge(year);
-  var retirement = 65 - age;
-  if (retirement > 0){
-  console.log(firstName + ' retires in ' + retirement + ' years.')
-  } else {
-    console.log(firstName + ' is already retired.')
+// expression
+var whatDoYouDo = function(job, firstName) {
+  switch(job) {
+    case 'teacher':
+      return firstName + ' teaches kids.'
+    case 'designer':
+      return firstName + ' creates websites.'
+    default:
+      return firstName + ' does something else.'
   }
 }
 
-yearsUntilRetirement(1993, 'John');
-yearsUntilRetirement(1929, 'Jane');
+console.log(whatDoYouDo('teacher', 'John'));
