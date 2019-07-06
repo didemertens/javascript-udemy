@@ -9,13 +9,17 @@ x++;
 
 */
 
-// if else
+// Boolean logic
 
 var firstName = 'John';
-var civilStatus = 'single';
+var age = 26;
 
-if (civilStatus === 'married'){
-  console.log(firstName + ' is married.');
+if (age < 13 ){
+  console.log(firstName + ' is a boy.')
+} else if (age >= 13 && age < 20) {
+  console.log(firstName + ' is a teenager.')
+} else if (age >= 20 && age < 30) {
+  console.log(firstName + ' is a young man.')
 } else{
-  console.log(firstName + ' is not married.');
+  console.log(firstName + ' is a man.')
 }
