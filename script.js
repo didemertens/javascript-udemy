@@ -1,28 +1,26 @@
-// challenge 4
+// loops and iteration
 
-var john = {
-  fullName: 'John Smith',
-  mass: 70,
-  height: 1.80,
-  bmiCalc: function (){
-    this.bmi = this.mass / (this.height * this.height);
-  },
+// for (var i = 0;  i < 10; i++){
+//   console.log(i)
+// };
+
+// var john = ['John', 'Smith', 'designer', 1990];
+
+// for (var i = 0; i < john.length; i++) {
+//   console.log(john[i]);
+// }
+
+// var i = 0
+// while (i < john.length) {
+//   console.log(john[i]);
+//   i++;
+// }
+
+// continue and break statement
+
+var john = ['John', 'Smith', false, 'designer', 1990];
+
+for (var i = john.length  - 1; i >= 0; i--) {
+  // if (typeof john[i] !== 'string') break;
+  console.log(john[i]);
 }
-
-var mark = {
-  fullName: 'Mark Mert',
-  mass: 70,
-  height: 1.80,
-  bmiCalc: function (){
-    this.bmi = this.mass / (this.height * this.height);
-  },
-}
-
-if (john.bmiCalc() > mark.bmiCalc()) {
-  console.log(john.fullName + ' has a higher bmi of ' + john.bmi);
-} else if (john.bmi === mark.bmi){
-  console.log(john.fullName + ' and ' + mark.fullName +
-              ' both have a bmi of ' + john.bmi);
-} else{
-  console.log(mark.fullName + ' has a higher bmi of ' + mark.bmi);
-};
