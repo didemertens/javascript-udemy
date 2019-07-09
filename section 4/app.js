@@ -17,20 +17,30 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
   if (gamePlaying) {
       // 1. random number
     var dice = Math.floor(Math.random() * 6) + 1;
-
+    var lastDice = dice;
       // 2. display result
     var diceDOM = document.querySelector('.dice');
     diceDOM.style.display = 'block';
     diceDOM.src = 'dice-' + dice + '.png';
 
-      // 3. update round score if rolled number NOT 1
-    if (dice !== 1) {
-      // add score
-      roundScore += dice;
-      document.querySelector('#current-' + activePlayer).textContent = roundScore;
-    } else{
-      // next player
-      nextPlayer();
+    // 3. update round score if rolled number NOT 1, not 2 times 6
+  if (dice === 1){
+    // next player
+    nextPlayer();
+    lastDice = 0;
+  } else if (dice === 6 && lastDice === 6) {
+    // cannot throw 6 in a row
+    roundScore = 0;
+    scores[activePlayer] = 0;
+    document.querySelector('#current-' + activePlayer).textContent = '0';
+    document.getElementById('score-' + activePlayer).textContent = '0';
+    nextPlayer();
+    lastDice = 0;
+  } else {
+    // add score
+    roundScore += dice;
+    document.querySelector('#current-' + activePlayer).textContent = roundScore;
+    lastDice = dice;
     }
   }
 });
