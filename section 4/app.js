@@ -46,6 +46,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 });
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
+  finalScore = document.getElementById("finalScore").value
   if (gamePlaying){
     // add current to global score
     scores[activePlayer] += roundScore;
@@ -53,7 +54,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     // update UI
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
     // check if won game
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= finalScore) {
      document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
      document.querySelector('.dice').style.display = 'none';
      document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
