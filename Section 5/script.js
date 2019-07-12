@@ -1,86 +1,34 @@
-// // var john {
-// //   name : 'John',
-// //   yearOfBirth: 1990,
-// //   job: 'teacher',
-// // };
+// first-class functions
 
-// var Person = function(name, yearOfBirth, job) {
-//   this.name = name;
-//   this.yearOfBirth = yearOfBirth;
-//   this.job = job;
-// };
+var years = [1990, 1994, 1995, 1944, 2005, 1988];
 
-// Person.prototype.calculateAge =  function() {
-//     console.log(2019 - this.yearOfBirth);
-//   }
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+      arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+function calculateAge(el) {
+  return 2019 - el;
+};
 
-// Person.prototype.lastName = 'Smith';
+function isFullAge(el) {
+  return el >= 18;
+};
 
-// var john = new Person('John', 1990, 'designer');
-// var jane = new Person('Jane', 1999, 'teacher');
+function maxHeartrate(el) {
 
-// john.calculateAge();
-// console.log(john.lastName);
-
-
-// Object.create
-/*
-var personProto = {
-  calculateAge : function() {
-    console.log(2019 - this.yearOfBirth);
+  if (el >= 18 && el <= 81) {
+  return Math.round(206.9 - (0.67 * el));
+  } else {
+    return -1;
   }
-}
-
-var john = Object.create(personProto);
-john.name = 'John';
-john.yearOfBirth = 1990;
-
-var jane = Object.create(personProto,
-{
-  name: { value : 'Jane' },
-  yearOfBirth: { value : 1948 },
-  });
-*/
-
-// Primitives vs objects
-
-// Primitives
-var a = 23;
-var b = a;
-a = 46;
-
-console.log(a, b)
-
-// objects
-var obj1 = {
-  name: 'John',
-  age: 25,
-};
-var obj2 = obj1;
-obj1.age = 30;
-console.log(obj1.age, obj2.age);
-
-// functions
-var age = 27;
-var obj = {
-  name: 'louise',
-  city: 'Paris',
 };
 
-function change(a,b){
-  a = 30;
-  b.city = 'London'
-}
-
-
-change(age, obj);
-console.log(age, obj.city);
-
-
-
-
-
-
-
-
-
+var ages = arrayCalc(years, calculateAge);
+var fullAges = arrayCalc(ages, isFullAge);
+var rates = arrayCalc(ages, maxHeartrate);
+console.log(ages);
+console.log(fullAges);
+console.log(rates);
