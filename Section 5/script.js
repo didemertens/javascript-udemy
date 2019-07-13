@@ -20,7 +20,7 @@
                   console.log("Nope, sorry.");
                 }},
                 showScore: function(){
-                  console.log('You\re score is: ' + score)
+                  console.log('You\'re score is: ' + score)
                 },
               },
 
@@ -40,7 +40,7 @@
                   console.log("Nope, sorry.");
                 }},
                 showScore: function(){
-                  console.log('You\re score is: ' + score)
+                  console.log('You\'re score is: ' + score)
                 },
               },
 
@@ -60,19 +60,20 @@
                   console.log("Nope, sorry.");
                 }},
               showScore: function(){
-                console.log('You\re score is: ' + score)
+                console.log('You\'re score is: ' + score)
                 },
               },
               ];
   function askQuestions(){
     var keepAsking = true;
     while (keepAsking){
-      var number = Math.floor(Math.random() * 3);
+      var number = Math.floor(Math.random() * questions.length);
       questions[number].display()
       input = prompt("Answer the question in console:")
       if (input !== 'exit'){
         questions[number].checkAnswer();
         questions[number].showScore();
+        console.log('--------------------------------');
       } else if (input === 'exit') {
         keepAsking = false;
       };
