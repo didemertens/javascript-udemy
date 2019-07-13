@@ -1,40 +1,36 @@
-// functions returning functions
+//Closures
 
-// function interviewQuestion(job) {
-//     if (job === 'designer') {
-//       return function(name) {
-//         console.log(name + ', can you please explain what UX design is?');
-//       }
-//     } else if (job === 'teacher') {
-//         return function(name){
-//         console.log(name + ', what do you teach?')
-//         };
-//     } else {
-//       return function(name) {
-//         console.log('Hello ' + name + ', what do you do?');
-//       }
-//     }
+// function retirement(retirementAge) {
+//   var a = ' years left until retirement.';
+//   return function(yearOfBirth){
+//     var age = 2019 - yearOfBirth;
+//     console.log((retirementAge - age) + a);
 //   }
+// }
 
-// var teacherQuestion =
-// interviewQuestion('teacher');
-// var designerQuestion =
-// interviewQuestion('designer');
+// var retirementUS = retirement(66)
+// var retirementGermany = retirement(65);
+// var retirementIceland = retirement(67);
 
-// teacherQuestion('John');
-// designerQuestion('John');
+// retirementUS(1990);
+// retirementGermany(1990);
+// retirementIceland(1990);
 
-// interviewQuestion('teacher')('Mark');
+// // retirement(66)(1990);
 
-// IIFE
 
-(function() {
-  var score = Math.random() * 10;
-  console.log(score >=5);
-  })();
+function interviewQuestion(job) {
+  return function(name) {
+    var a;
+    if (job === 'teacher') {
+      a = ', what do you teach?'
+    } else if (job === 'designer') {
+      a = ', explain to me what UX design is.'
+    } else {
+      a = ', what do you do?'
+    };
+    console.log(name + a);
+  }
+}
 
-(function(goodLuck) {
-  var score = Math.random() * 10;
-  console.log(score >=5 - goodLuck);
-  })(5);
-//data privacy
+interviewQuestion('gardener')('john')
