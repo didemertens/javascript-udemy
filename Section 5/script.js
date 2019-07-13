@@ -1,36 +1,35 @@
-//Closures
+// bind, call, apply
 
-// function retirement(retirementAge) {
-//   var a = ' years left until retirement.';
-//   return function(yearOfBirth){
-//     var age = 2019 - yearOfBirth;
-//     console.log((retirementAge - age) + a);
-//   }
-// }
-
-// var retirementUS = retirement(66)
-// var retirementGermany = retirement(65);
-// var retirementIceland = retirement(67);
-
-// retirementUS(1990);
-// retirementGermany(1990);
-// retirementIceland(1990);
-
-// // retirement(66)(1990);
-
-
-function interviewQuestion(job) {
-  return function(name) {
-    var a;
-    if (job === 'teacher') {
-      a = ', what do you teach?'
-    } else if (job === 'designer') {
-      a = ', explain to me what UX design is.'
-    } else {
-      a = ', what do you do?'
-    };
-    console.log(name + a);
+var john = {
+  name : 'John',
+  age : 26,
+  job : 'teacher',
+  presentation : function(style, timeOfDay) {
+    if (style === 'formal') {
+      console.log('Good ' + timeOfDay
+        + ', Ladies & Gentleman. I\'m ' + this.name + '. I work as a ' +
+        this.job + ' and am ' + this.age + ' years old.')
+    } else if (style === 'friendly') {
+        console.log('Hey! It\'s ' + timeOfDay +
+          ' and I\'m ' + this.name + ' and work as a ' +
+        this.job)
+    }
   }
-}
+};
 
-interviewQuestion('gardener')('john')
+
+var emily = {
+  name: 'Emily',
+  age: 35,
+  job: 'designer',
+};
+
+
+john.presentation('formal', 'morning');
+john.presentation.call(emily, 'friendly', 'afternoon')
+
+var johnFriendly = john.presentation.bind(john, 'friendly')
+johnFriendly('afternoon');
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+emilyFormal('evening');
