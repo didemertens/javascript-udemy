@@ -82,18 +82,12 @@ var budgetController = (function() {
       },
 
       deleteItems: function() {
-        var data = {
-          allItems: {
-            exp: [],
-            inc: [],
-          },
-          totals: {
-            exp: 0,
-            inc: 0,
-          },
-          budget: 0,
-          percentage: -1,
-        };
+        data.allItems['inc'] = [];
+        data.allItems['exp'] = [];
+        data.totals['inc'] = 0;
+        data.totals['exp'] = 0;
+        data.budget = 0;
+        data.percentage = -1;
       },
 
       // returnItems: function(type) {
@@ -432,10 +426,8 @@ var controller = (function(budgetCtrl, UICtrl) {
           totalExp: 0,
           percentage: -1});
 
-
         // // delete item from data structure
         budgetCtrl.deleteItems();
-
 
         // // delete UI
         UICtrl.deleteAllItems();
