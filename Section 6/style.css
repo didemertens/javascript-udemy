@@ -44,6 +44,11 @@ body {
 }
 
 .clear__all{
+  margin-left: 50%;
+  display: none;
+}
+
+.clear__all{
   border-radius: 15px;
   padding: 10px;
   font-size: 16pt;

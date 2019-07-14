@@ -228,6 +228,9 @@ var UIController = (function() {
 
           // 3. Insert HTML into the DOM
           document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+
+          // Clear all btn visible
+          document.querySelector(DOMstrings.clearBtn).style.display = 'block';
       },
 
       deleteListItem: function(selectorID) {
@@ -236,10 +239,16 @@ var UIController = (function() {
       },
 
       deleteAllItems: function() {
+        // remove incomes
         var fieldsInc = document.querySelector(DOMstrings.incomeContainer);
         fieldsInc.parentNode.removeChild(fieldsInc);
+
+        // remove expenses
         var fieldsExp = document.querySelector(DOMstrings.expensesContainer);
         fieldsExp.parentNode.removeChild(fieldsExp);
+
+        //hide all clear btn
+        document.querySelector(DOMstrings.clearBtn).style.display = 'none';
       },
 
       clearFields: function() {
