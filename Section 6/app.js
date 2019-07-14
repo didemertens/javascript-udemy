@@ -81,15 +81,24 @@ var budgetController = (function() {
           }
       },
 
-      deleteItems: function(type) {
-          for (var i = 0; i < data.allItems[type].length; i++) {
-              data.allItems[type][i].pop()
-          };
+      deleteItems: function() {
+        var data = {
+          allItems: {
+            exp: [],
+            inc: [],
+          },
+          totals: {
+            exp: 0,
+            inc: 0,
+          },
+          budget: 0,
+          percentage: -1,
+        };
       },
 
-      returnItems: function(type) {
-        return data.allItems[type];
-      },
+      // returnItems: function(type) {
+      //   return data.allItems[type];
+      // },
 
       calculateBudget: function() {
 
@@ -232,11 +241,11 @@ var UIController = (function() {
         el.parentNode.removeChild(el);
       },
 
-      deleteAllItems: function(list) {
-        for (i = 0; i < list.length; i++){
-          var el = document.getElementById(list[i].id)
-          el.parentNode.removeChild(el);
-        }
+      deleteAllItems: function() {
+        var fieldsInc = document.querySelector(DOMstrings.incomeContainer);
+        fieldsInc.parentNode.removeChild(fieldsInc);
+        var fieldsExp = document.querySelector(DOMstrings.expensesContainer);
+        fieldsExp.parentNode.removeChild(fieldsExp);
       },
 
       clearFields: function() {
@@ -412,26 +421,24 @@ var controller = (function(budgetCtrl, UICtrl) {
     };
 
     var ctrDeleteAllItems = function(event) {
-        var incs, exps;
+
         //event listener
-
-
-        // delete item from data structure
-        budgetCtrl.deleteItems('inc');
-        budgetCtrl.deleteItems('exp');
-
-        incs = budgetCtrl.returnItems('inc');
-        exps =budgetCtrl.returnItems('exp');
-        console.log(incs);
-
         console.log('clear all')
 
-        // delete UI
+        // clear budget
+        UICtrl.displayBudget({
+          budget: 0,
+          totalInc: 0,
+          totalExp: 0,
+          percentage: -1});
 
-        UICtrl.deleteAllItems(incs);
-        console.log(incs);
+
+        // // delete item from data structure
+        budgetCtrl.deleteItems();
 
 
+        // // delete UI
+        UICtrl.deleteAllItems();
     };
 
     return {
