@@ -39,6 +39,17 @@ body {
     position: relative;
 }
 
+#button__clear{
+  text-align: center;
+}
+
+.clear__all{
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 16pt;
+  color: #555;
+}
+
 .budget {
     position: absolute;
     width: 350px;

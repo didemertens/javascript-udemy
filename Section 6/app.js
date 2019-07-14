@@ -81,6 +81,16 @@ var budgetController = (function() {
           }
       },
 
+      deleteItems: function(type) {
+          for (var i = 0; i < data.allItems[type].length; i++) {
+              data.allItems[type][i].pop()
+          };
+      },
+
+      returnItems: function(type) {
+        return data.allItems[type];
+      },
+
       calculateBudget: function() {
 
           // 1. Sum incomes, expenses
@@ -148,6 +158,7 @@ var UIController = (function() {
       container: '.container',
       expensesPercLabel: '.item__percentage',
       dateLabel: '.budget__title--month',
+      clearBtn: '.clear__all',
     };
 
     var formatNumber = function(num, type){
@@ -219,6 +230,13 @@ var UIController = (function() {
       deleteListItem: function(selectorID) {
         var el = document.getElementById(selectorID)
         el.parentNode.removeChild(el);
+      },
+
+      deleteAllItems: function(list) {
+        for (i = 0; i < list.length; i++){
+          var el = document.getElementById(list[i].id)
+          el.parentNode.removeChild(el);
+        }
       },
 
       clearFields: function() {
@@ -316,6 +334,9 @@ var controller = (function(budgetCtrl, UICtrl) {
       document.querySelector(DOM.container).addEventListener('click', ctrDeleteItem);
 
       document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changedType);
+
+      document.querySelector(DOM.clearBtn).addEventListener('click', ctrDeleteAllItems);
+
     };
 
     var updateBudget = function () {
@@ -388,6 +409,29 @@ var controller = (function(budgetCtrl, UICtrl) {
           // 4. update percentages
           updatePercentages();
       }
+    };
+
+    var ctrDeleteAllItems = function(event) {
+        var incs, exps;
+        //event listener
+
+
+        // delete item from data structure
+        budgetCtrl.deleteItems('inc');
+        budgetCtrl.deleteItems('exp');
+
+        incs = budgetCtrl.returnItems('inc');
+        exps =budgetCtrl.returnItems('exp');
+        console.log(incs);
+
+        console.log('clear all')
+
+        // delete UI
+
+        UICtrl.deleteAllItems(incs);
+        console.log(incs);
+
+
     };
 
     return {
