@@ -44,19 +44,41 @@
 
 /////////////////////////////////////////////
 
-//IIFES, use block for data privacy
+// IIFES, use block for data privacy
 
-{
-  const a = 1;
-  let b = 2;
+// {
+//   const a = 1;
+//   let b = 2;
+// }
+
+// console.log(a + b);
+
+
+
+/////////////////////////////////////////////
+// Strings
+
+let firstName = 'john';
+let lastName = 'Smith';
+const yearOfBirth = 1990;
+
+function calcAge(year) {
+  return 2019 - year;
 }
 
-console.log(a + b);
+// ES5
+console.log('This is ' + firstName + ' ' + lastName
+            + ', he was born in ' + yearOfBirth +
+            '. Today he is ' + calcAge(yearOfBirth) + ' years old.')
+
+// ES6
+console.log(`This is ${firstName} ${lastName}, he was born in ${yearOfBirth}. So today he is ${calcAge(yearOfBirth)} years old.`)
 
 
-
-
-
-
-
+// new string methods
+const n = `${firstName} ${lastName}`;
+console.log(n.startsWith('j'));
+console.log(n.includes(' '));
+console.log(n.endsWith('j'));
+console.log(`${firstName} `.repeat(5));
 
