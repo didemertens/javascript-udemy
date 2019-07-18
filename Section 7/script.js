@@ -15,29 +15,48 @@
 // console.log(name6);
 
 
-// ES5
+// // ES5
 
-function driversLicence(passedTest){
-    console.log(firstName);
-  if (passedTest) {
-    var firstName = 'John';
-    var yearOfBirth = 1990;
+// function driversLicence(passedTest){
+//     console.log(firstName);
+//   if (passedTest) {
+//     var firstName = 'John';
+//     var yearOfBirth = 1990;
 
-  }
-    console.log(firstName + ', born in ' + yearOfBirth + ' is allowed to drive.');
+//   }
+//     console.log(firstName + ', born in ' + yearOfBirth + ' is allowed to drive.');
+// }
+
+// driversLicence(true);
+
+// // ES6
+
+// function driversLicence(passedTest){
+//   let firstName;
+//   const yearOfBirth = 1990;
+//   if (passedTest) {
+//     firstName = 'John';
+//   }
+//     console.log(firstName + ', born in ' + yearOfBirth + ' is allowed to drive.');
+// }
+
+// driversLicence(true);
+
+/////////////////////////////////////////////
+
+//IIFES, use block for data privacy
+
+{
+  const a = 1;
+  let b = 2;
 }
 
-driversLicence(true);
+console.log(a + b);
 
-// ES6
 
-function driversLicence(passedTest){
-  let firstName;
-  const yearOfBirth = 1990;
-  if (passedTest) {
-    firstName = 'John';
-  }
-    console.log(firstName + ', born in ' + yearOfBirth + ' is allowed to drive.');
-}
 
-driversLicence(true);
+
+
+
+
+
