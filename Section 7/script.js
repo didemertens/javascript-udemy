@@ -192,35 +192,59 @@
 
 // ES6
 
-const john = ['john', 26];
-const [name, age] = john;
-console.log(name, age);
+// const john = ['john', 26];
+// const [name, age] = john;
+// console.log(name, age);
 
 
-const obj = {
-  firstName: 'John',
-  lastName: 'Smith',
+// const obj = {
+//   firstName: 'John',
+//   lastName: 'Smith',
+// }
+
+// const {firstName, lastName} = obj;
+
+// console.log(firstName);
+
+// const {firstName: a, lastName: b} = obj;
+// console.log(b);
+
+
+
+
+// function caclAgeRetirement(year) {
+//   const age = new Date().getFullYear() - year;
+//   return [age, 65 - age];
+// }
+
+// const [age2, retirement] = caclAgeRetirement(1999);
+
+
+// console.log(age, retirement)
+
+// ARRAYS
+
+const boxes = document.querySelectorAll('.box');
+
+const boxesArr6 = Array.from(boxes);
+boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+// Array.from(boxes).forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+
+for (const cur of boxesArr6) {
+  if (cur.className.includes('blue')) {
+    continue;
+  }
+    cur.textContent = 'I changed to blue';
 }
 
-const {firstName, lastName} = obj;
+const ages = [12, 6, 3, 8, 11, 21];
 
-console.log(firstName);
-
-const {firstName: a, lastName: b} = obj;
-console.log(b);
+console.log(ages.findIndex(cur => cur >= 18));
+console.log(ages.find(cur => cur >= 18));
 
 
 
 
-function caclAgeRetirement(year) {
-  const age = new Date().getFullYear() - year;
-  return [age, 65 - age];
-}
-
-const [age2, retirement] = caclAgeRetirement(1999);
-
-
-console.log(age, retirement)
 
 
 
