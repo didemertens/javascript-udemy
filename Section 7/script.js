@@ -527,14 +527,20 @@ class Park {
 }
 
 function avgAgeParks(parks){
+
+  // const sum = arr.reduce((prev, cur) => prev + current);
+
   ages = 0;
   let agesParks = parks.forEach(function(el) {
     ages += el.agePark();
   })
-  const ageParks = (ages / 3);
-  console.log(`The average age of the 3 parks is ${ageParks} years.`);
+  const ageParks = (ages / parks.length);
+  console.log(`The average age of the ${parks.length} parks is ${ageParks} years.`);
 }
 
+
+// const allParks = [new Park('Green Park', 2000, 500, 20),
+                    //new Park('Mayfield ...')]
 
 const greenPark = new Park('Green Park', 2000, 500, 20);
 const mayfieldPark = new Park('Mayfield Park', 1990, 1000, 80);
@@ -619,10 +625,4 @@ streets.forEach(function (value, key) {
     };
   };
 })
-
-
-
-
-
-
 
