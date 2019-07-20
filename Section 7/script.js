@@ -317,18 +317,44 @@
 
 // // ES6
 
-function isFullAge6(limit, ...years) {
-  years.forEach(cur => console.log((2019 - cur) >= limit));
-}
+// function isFullAge6(limit, ...years) {
+//   years.forEach(cur => console.log((2019 - cur) >= limit));
+// }
 
-isFullAge6(16, 2000, 2010, 1990, 1999, 1965);
+// isFullAge6(16, 2000, 2010, 1990, 1999, 1965);
 
 
 /////////////////////////////////////////////
 
 // DEFAULT PARAMETERS
 
+// ES5
 
+// function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+
+//   lastName === undefined ? lastName = 'Smith' : lastName;
+//   nationality === undefined ? nationality = 'English' : nationality;
+
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.yearOfBirth = yearOfBirth;
+//   this.nationality = nationality;
+// }
+
+// ES6
+function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'English'){
+
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.yearOfBirth = yearOfBirth;
+  this.nationality = nationality;
+}
+
+var john = new SmithPerson('John', 1990);
+console.log(john);
+
+var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
+console.log(emily);
 /////////////////////////////////////////////
 
 
