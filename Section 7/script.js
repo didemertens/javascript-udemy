@@ -440,67 +440,189 @@
 
 // ES5
 
-var Person5 = function(name, yearOfBirth, job) {
-  this.name = name;
-  this.yearOfBirth = yearOfBirth;
-  this.job = job;
-}
+// var Person5 = function(name, yearOfBirth, job) {
+//   this.name = name;
+//   this.yearOfBirth = yearOfBirth;
+//   this.job = job;
+// }
 
-Person5.prototype.calcAge = function() {
-  var age = new Date().getFullYear() - this.yearOfBirth;
-  console.log(age);
-}
+// Person5.prototype.calcAge = function() {
+//   var age = new Date().getFullYear() - this.yearOfBirth;
+//   console.log(age);
+// }
 
-var Athlete5 = function(name, yearOfBirth, job, olympic, medals) {
-  Person5.call(this, name, yearOfBirth, job);
-  this.olympic = olympic;
-  this.medals = medals;
-}
+// var Athlete5 = function(name, yearOfBirth, job, olympic, medals) {
+//   Person5.call(this, name, yearOfBirth, job);
+//   this.olympic = olympic;
+//   this.medals = medals;
+// }
 
-Athlete5.prototype = Object.create(Person5.prototype);
+// Athlete5.prototype = Object.create(Person5.prototype);
 
-Athlete5.prototype.wonMedal = function() {
-  this.medals++;
-  console.log(this.medals);
-}
+// Athlete5.prototype.wonMedal = function() {
+//   this.medals++;
+//   console.log(this.medals);
+// }
 
-var johnAthlete5 = new Athlete5('John', 1990, 'swimmer', 3, 10);
-// johnAthlete5.wonMedal();
-// johnAthlete5.wonMedal();
+// var johnAthlete5 = new Athlete5('John', 1990, 'swimmer', 3, 10);
+// // johnAthlete5.wonMedal();
+// // johnAthlete5.wonMedal();
 
-// johnAthlete5.calcAge();
+// // johnAthlete5.calcAge();
 
-// ES6
+// // ES6
 
-class Person6 {
-constructor (name, yearOfBirth, job) {
-  this.name = name;
-  this.yearOfBirth = yearOfBirth;
-  this.job = job;
-}
+// class Person6 {
+// constructor (name, yearOfBirth, job) {
+//   this.name = name;
+//   this.yearOfBirth = yearOfBirth;
+//   this.job = job;
+// }
 
-calcAge() {
-  var age = new Date().getFullYear() - this.yearOfBirth;
-  console.log(age);
-  }
-}
+// calcAge() {
+//   var age = new Date().getFullYear() - this.yearOfBirth;
+//   console.log(age);
+//   }
+// }
 
-class Athlete6 extends Person6 {
-constructor (name, yearOfBirth, job, olympic, medals) {
-  super(name, yearOfBirth, job);
-  this.olympic = olympic;
-  this.medals = medals;
-}
+// class Athlete6 extends Person6 {
+// constructor (name, yearOfBirth, job, olympic, medals) {
+//   super(name, yearOfBirth, job);
+//   this.olympic = olympic;
+//   this.medals = medals;
+// }
 
-wonMedal() {
-  this.medals++
-  console.log(this.medals);
-  }
-}
+// wonMedal() {
+//   this.medals++
+//   console.log(this.medals);
+//   }
+// }
 
-const johnAthlete6 = new Athlete6('John', 1990, 'swimmer', 3, 10);
-johnAthlete6.calcAge();
-johnAthlete6.wonMedal();
+// const johnAthlete6 = new Athlete6('John', 1990, 'swimmer', 3, 10);
+// johnAthlete6.calcAge();
+// johnAthlete6.wonMedal();
 
 /////////////////////////////////////////////
+
+// Challenge 8
+
+
+// PARKS
+
+class Park {
+    constructor(name, buildYear, numberTrees, parkArea) {
+      this.name = name;
+      this.buildYear = buildYear;
+      this.numberTrees = numberTrees;
+      this.parkArea = parkArea;
+    }
+    treeDensity(){
+      const density = this.numberTrees / this.parkArea;
+      return `${this.name} has a tree density of ${density}.`
+    }
+    agePark(){
+      const age = new Date().getFullYear() - this.buildYear;
+      return age;
+    }
+}
+
+function avgAgeParks(parks){
+  ages = 0;
+  let agesParks = parks.forEach(function(el) {
+    ages += el.agePark();
+  })
+  const ageParks = (ages / 3);
+  console.log(`The average age of the 3 parks is ${ageParks} years.`);
+}
+
+
+const greenPark = new Park('Green Park', 2000, 500, 20);
+const mayfieldPark = new Park('Mayfield Park', 1990, 1000, 80);
+const nationalPark = new Park('National Park', 2010, 3000, 100);
+
+const parks = [greenPark, mayfieldPark, nationalPark];
+
+// STREETS
+
+const streets = new Map();
+
+streets.set('name1', 'Main Street');
+streets.set('build1', '1990');
+streets.set('length1', 10);
+
+streets.set('name2', 'Upper Street');
+streets.set('build2', '1920');
+streets.set('length2', 20);
+
+streets.set('name3', 'Kings Street');
+streets.set('build3', '2006');
+streets.set('length3', 30);
+
+streets.set('name4', 'Parks Street');
+streets.set('build4', '2000');
+streets.set('length4', 60);
+
+
+const averageStreets = function() {
+  let averageLength = 0
+  for (let [key, value] of streets.entries()) {
+    if (typeof(value) === 'number') {
+      averageLength += value;
+    }
+  }
+  return averageLength;
+};
+
+
+/// Build Park Report
+
+console.log("PARK REPORT:");
+parks.forEach(cur => console.log(cur.treeDensity()));
+
+parks.forEach((cur) => {
+  trees = cur.numberTrees;
+  if (trees > 2000 ){
+    console.log(`${cur.name} has more than 2000 trees.`)
+  };
+});
+
+avgAgeParks(parks);
+
+console.log("-------------------------------------------------------");
+
+/// Build Street Report
+
+console.log("STREET REPORT:");
+
+const length = averageStreets();
+console.log(`The average length of the streets is ${length} km.`);
+
+
+streets.forEach(function (value, key) {
+  if (typeof(value) === 'number') {
+    if (value <= 10) {
+      let streetName = streets.get('name' + key.slice(-1));
+      let streetBuild = streets.get('build' + key.slice(-1));
+      console.log(`The size of ${streetName} is small. It was build in ${streetBuild}.`)
+    } else if (value > 10 && value <= 20) {
+      let streetName = streets.get('name' + key.slice(-1));
+      let streetBuild = streets.get('build' + key.slice(-1));
+      console.log(`The size of ${streetName} is normal. It was build in ${streetBuild}.`)
+    } else if (value > 20 && value <= 30) {
+      let streetName = streets.get('name' + key.slice(-1));
+      let streetBuild = streets.get('build' + key.slice(-1));
+      console.log(`The size of ${streetName} is big. It was build in ${streetBuild}.`)
+    } else if (value > 30) {
+      let streetName = streets.get('name' + key.slice(-1));
+      let streetBuild = streets.get('build' + key.slice(-1));
+      console.log(`The size of ${streetName} is huge. It was build in ${streetBuild}.`)
+    };
+  };
+})
+
+
+
+
+
+
 
