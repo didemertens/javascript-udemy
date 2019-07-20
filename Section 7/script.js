@@ -360,38 +360,80 @@
 
 // MAPS
 
-const question = new Map();
-question.set('question', 'What is the official name of the latest major JavaScript version?');
-question.set(1, 'ES5');
-question.set(2, 'ES6');
-question.set(3, 'ES2015');
-question.set(4, 'ES7');
-question.set('correct', 3);
-question.set(true, 'Correct!');
-question.set(false, 'Wrong, try again.');
+// const question = new Map();
+// question.set('question', 'What is the official name of the latest major JavaScript version?');
+// question.set(1, 'ES5');
+// question.set(2, 'ES6');
+// question.set(3, 'ES2015');
+// question.set(4, 'ES7');
+// question.set('correct', 3);
+// question.set(true, 'Correct!');
+// question.set(false, 'Wrong, try again.');
 
-console.log(question.get('question'));
-console.log(question.size);
+// console.log(question.get('question'));
+// console.log(question.size);
 
-// if(question.has(4)) {
-// //     question.delete(4);
+// // if(question.has(4)) {
+// // //     question.delete(4);
+// // }
+
+// // question.clear();
+
+// // question.forEach((value, key) =>
+// //   console.log(`This is the key ${key} and it is set to ${value}`))
+
+// for (let [key, value] of question.entries()) {
+//   if (typeof(key) === 'number') {
+//     console.log(`Answer ${key}: ${value}`);
+//   }
 // }
 
-// question.clear();
+// const ans =  parseInt(prompt('Write the correct answer'));
+// console.log(question.get(ans === question.get('correct')));
 
-// question.forEach((value, key) =>
-//   console.log(`This is the key ${key} and it is set to ${value}`))
+/////////////////////////////////////////////
 
-for (let [key, value] of question.entries()) {
-  if (typeof(key) === 'number') {
-    console.log(`Answer ${key}: ${value}`);
+// CLASSES
+
+// ES5
+var Person5 = function(name, yearOfBirth, job) {
+  this.name = name;
+  this.yearOfBirth = yearOfBirth;
+  this.job = job;
+}
+
+Person5.prototype.calcAge = function() {
+  var age = new Date().getFullYear() - this.yearOfBirth;
+  console.log(age);
+}
+
+var john5 = new Person5('John', 1990, 'teacher');
+
+john5.calcAge();
+
+// ES6
+class Person6 {
+  constructor (name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+  }
+
+  calcAge() {
+    var age = new Date().getFullYear() - this.yearOfBirth;
+    console.log(age);
+  }
+
+  static greeting() {
+    console.log('Hey!');
   }
 }
 
-const ans =  parseInt(prompt('Write the correct answer'));
-console.log(question.get(ans === question.get('correct')));
+const john6 = new Person6('John', 1990, 'teacher');
+john6.calcAge();
+Person6.greeting();
 
-/////////////////////////////////////////////
+
 
 /////////////////////////////////////////////
 
