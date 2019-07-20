@@ -41,32 +41,32 @@
 
         // }
 
-        // getRecipe();
+        // // getRecipe();
 
 
-        const getIDs = new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve([7532, 2912, 3922, 2329]);
-          }, 1500);
-        });
+        // const getIDs = new Promise((resolve, reject) => {
+        //   setTimeout(() => {
+        //     resolve([7532, 2912, 3922, 2329]);
+        //   }, 1500);
+        // });
 
-        const getRecipe = recId => {
-          return new Promise((resolve, reject) => {
-            setTimeout((ID) => {
-              const recipe = {title: 'fresh tomato sauce', publisher: 'Jonas'};
-              resolve(`${ID}: ${recipe.title}`);
-            }, 1500, recId)
-          });
-        };
+        // const getRecipe = recId => {
+        //   return new Promise((resolve, reject) => {
+        //     setTimeout((ID) => {
+        //       const recipe = {title: 'fresh tomato sauce', publisher: 'Jonas'};
+        //       resolve(`${ID}: ${recipe.title}`);
+        //     }, 1500, recId)
+        //   });
+        // };
 
-        const getRelated = publisher => {
-            return new Promise((resolve, reject) => {
-              setTimeout(pub =>{
-                const recipe = {title: 'Pizza', publisher: 'Jonas'};
-                  resolve(`${pub}: ${recipe.title}`);
-              }, 1500, publisher)
-            })
-        };
+        // const getRelated = publisher => {
+        //     return new Promise((resolve, reject) => {
+        //       setTimeout(pub =>{
+        //         const recipe = {title: 'Pizza', publisher: 'Jonas'};
+        //           resolve(`${pub}: ${recipe.title}`);
+        //       }, 1500, publisher)
+        //     })
+        // };
 
         // getIDs
         // .then(IDs => {
@@ -84,24 +84,42 @@
         //   console.log(error);
         // });
 
-        async function getRecipesAW() {
+        // async function getRecipesAW() {
 
-          const IDs = await getIDs;
-          console.log(IDs);
-          const recipe = await getRecipe(IDs[2]);
-          console.log(recipe);
-          const related = await getRelated('Jonas');
-          console.log(related);
+        //   const IDs = await getIDs;
+        //   console.log(IDs);
+        //   const recipe = await getRecipe(IDs[2]);
+        //   console.log(recipe);
+        //   const related = await getRelated('Jonas');
+        //   console.log(related);
 
-          return recipe;
+        //   return recipe;
 
-        }
+        // }
 
-        getRecipesAW().then(result => console.log(result));
+        // getRecipesAW().then(result => console.log(result));
 
 
 // async always returns a promise, so use .then
 
+
+  function getWeather(woeid) {
+    fetch(`http://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
+    // also returns a promise
+    .then(result => {
+      console.log(result);
+      return result.json();
+    })
+    .then(data => {
+      // console.log(data);
+      const today = data.consolidated_weather[0];
+      console.log(`Temperatures in ${data.title} stay between ${today.min_temp} and ${today.max_temp}.`)
+    })
+    .catch(error => console.log(error));
+  }
+
+  getWeather(44418);
+  getWeather(2487956);
 
 
 
