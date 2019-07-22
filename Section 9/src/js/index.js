@@ -1,6 +1,15 @@
-// Global app controller
-import str from './models/Search';
-// import { add as a, multiply, ID } from './views/SearchView';
-import * as searchView from './views/SearchView';
+import axios from 'axios';
 
-console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and ${searchView.multiply(3,5)}, ${str}}`)
+async function getResults(query) {
+    const proxy = 'https://cors-anywhere.herokuapp.com/';
+    const key = '3081938082134b4eeb44e1b101de27b9';
+    try {
+        const res = await axios(`${proxy}http://www.food2fork.com/api/search?key=${key}&q=${query}`);
+        const recipes = res.data.recipes;
+        console.log(recipes);
+    } catch (error) {
+        alert(error);
+    }
+}
+
+getResults('vegan');
