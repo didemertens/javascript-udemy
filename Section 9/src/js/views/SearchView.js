@@ -46,10 +46,10 @@ const renderRecipe = recipe => {
 // type is previous or next
 const createButton = (page, type) => `
         <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page -1 : page + 1}>
+            <span>Page ${type === 'prev' ? page -1 : page + 1}</span>
             <svg class="search__icon">
                 <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
             </svg>
-            <span>Page ${type === 'prev' ? page -1 : page + 1}</span>
         </button>
 `;
 
