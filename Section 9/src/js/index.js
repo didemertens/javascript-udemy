@@ -61,6 +61,7 @@ const controlRecipe = async () => {
     const id = window.location.hash.replace('#', '');
     if (id) {
     // Prepare UI 
+    recipeView.clearRecipe();
     renderLoader(elements.recipe);
 
     // Create new recipe object
