@@ -84,7 +84,7 @@ export default class Recipe {
         this.ingredients = newIngredients;
     }
 
-    updateservings (type) {
+    updateServings (type) {
         // Update servings
         const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
 
