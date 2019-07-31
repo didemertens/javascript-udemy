@@ -12,7 +12,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
 
 // Global state of the app (search object, current recipe, shopping list, likes)
 const state = {};
-window.state = state;
+// window.state = state;
 
 const controlSearch = async () => {
     // Get query from view
@@ -199,6 +199,3 @@ elements.recipe.addEventListener('click', e => {
         controlLike();
     }
 });
-
-
-// window.l = new List();
