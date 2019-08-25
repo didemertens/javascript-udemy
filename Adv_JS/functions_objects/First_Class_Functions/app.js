@@ -13,3 +13,4 @@ run(a, 2, 2);
 run(function(x, y) {
     return x * y;
 }, 2, 5);
+
