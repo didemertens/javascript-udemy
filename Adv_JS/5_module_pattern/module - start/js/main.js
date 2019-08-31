@@ -1,9 +1,9 @@
-var MAINAPP = (function(nsp) {
+var MAINAPP = (function(nsp, $, domU, strU) {
     /*
     Quiz Functionality
     */
     var initQuiz = function() {
-            assignEvent($('.fill-in-submit.btn-primary'),'click', function() {
+            domU.assignEvent($('.fill-in-submit.btn-primary'),'click', function() {
                 hideFeedback();
                 checkAnswer($('#q01_ans')[0].value);
             });
@@ -14,7 +14,7 @@ var MAINAPP = (function(nsp) {
                 result;
 
             if (value !== "") {
-                ans = breakOut(data($('#q01'), 'answer'), ",");
+                ans = strU.breakOut(domU.data($('#q01'), 'answer'), ",");
                 correct = ans.every(function(val) {
                     return (value.indexOf(val) > -1);
                 });
@@ -26,18 +26,18 @@ var MAINAPP = (function(nsp) {
         },
         displayFeedback = function(result) {
             var feedback = $('.feedback.' + result);
-            addClass(feedback, 'visible');
+            domU.addClass(feedback, 'visible');
         },
         hideFeedback = function() {
             var feedback = $('.feedback.visible');
-            removeClass(feedback, 'visible');
+            domU.removeClass(feedback, 'visible');
         };
 
 
     /*
     Setup
     */
-    domReady(function() {
+    UTIL.domReady(function() {
         initQuiz();
     });
 
@@ -46,4 +46,4 @@ var MAINAPP = (function(nsp) {
 
     return nsp;
     
-})(MAINAPP || {});
+})(MAINAPP || {}, UTIL.dom.$, UTIL.dom, UTIL.string);

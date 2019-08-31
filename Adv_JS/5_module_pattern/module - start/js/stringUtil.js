@@ -1,4 +1,8 @@
 var UTIL = (function(s) {
+
+    // Set up sub module
+    var sub = s.string = s.string || {};
+
         /*
     String Functionality
     */
@@ -15,8 +19,9 @@ var UTIL = (function(s) {
     };
 
     // Public
-    s.numChar = numChar;
-    s.breakOut = breakOut;
+    sub.numChar = numChar;
+    sub.breakOut = breakOut;
+
     return s;
-    
+
 }(UTIL || {}));

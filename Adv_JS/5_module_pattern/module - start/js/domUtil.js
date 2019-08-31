@@ -1,4 +1,11 @@
 var UTIL = (function(u) {
+
+    // Set up sub module
+    var sub = u.dom = u.dom || {};
+
+    // Dependencies
+    var strU = u.string;
+
         /*
     DOM Functionality
     */
@@ -37,7 +44,7 @@ var UTIL = (function(u) {
        var arr;
        
        arr = str.split(" ");
-       if (arr.length === 1 && numChar(str, "#") <= 1 && numChar(str, ".") <= 1) {
+       if (arr.length === 1 && strU.numChar(str, "#") <= 1 && strU.numChar(str, ".") <= 1) {
            return true;
        } else {   
            return false;
@@ -84,11 +91,11 @@ var UTIL = (function(u) {
    };
 
    // public
-   u.$ = $;
-   u.assignEvent = assignEvent;
-   u.data = data;
-   u.addClass = addClass;
-   u.removeClass = removeClass;
+   sub.$ = $;
+   sub.assignEvent = assignEvent;
+   sub.data = data;
+   sub.addClass = addClass;
+   sub.removeClass = removeClass;
 
    return u;
 

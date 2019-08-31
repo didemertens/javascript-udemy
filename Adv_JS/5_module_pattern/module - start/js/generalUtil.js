@@ -5,7 +5,7 @@ var UTIL = (function(gen){
     */
 
    var domReady = function(funct) {
-        doc.addEventListener('DOMContentLoaded', function(){ 
+        document.addEventListener('DOMContentLoaded', function(){ 
             if (typeof funct === "function") {
                 funct();
             }
