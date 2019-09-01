@@ -55,6 +55,8 @@ var MAINAPP = (function(nsp, $, domU, strU) {
         var htmlDiv;
         //Transfer Data
         this.questionDiv = (obj.type === "true-false") ? "multi-choice" : obj.type;
+        
+        /*
         this.type = obj.type;
         this.id = obj.id;
         this.questionText = obj.questionText;
@@ -62,6 +64,12 @@ var MAINAPP = (function(nsp, $, domU, strU) {
         this.correctResp = obj.correctResp;
         this.feedback = obj.feedback;
         this.weight = obj.weight;
+        */
+
+        for (let i in obj) {
+            this[i] = obj[i];
+        }
+
         this.result = "no-answer";
         this.studentResp = "";
         this.correct = false;
