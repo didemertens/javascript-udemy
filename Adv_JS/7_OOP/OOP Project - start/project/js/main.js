@@ -33,12 +33,21 @@ var MAINAPP = (function(nsp, $, domU, strU) {
             questionsArray[i] = new Question(questionsArray[i]);
         }
         console.log(questionsArray);
-        questionsArray[0].populateQuestion();
-        questionsArray[0].displayQuestion();
+        setUpNavigation();
     },
 
     initQuiz = function() {
         loadJSON("../JSON/content.json");
+
+        
+
+
+        /*domU.assignEvent($('.fill-in-submit.btn-primary'),'click', function() {
+            //hideFeedback();
+            //checkAnswer($('#q01_ans')[0].value);
+            console.log($('#q4_1')[0].checked);
+            console.log($('#q4_1_label')[0].innerHTML);
+        });*/
     };
 
     //Setup Questions
@@ -56,7 +65,7 @@ var MAINAPP = (function(nsp, $, domU, strU) {
         this.result = "no-answer";
         this.studentResp = "";
         this.correct = false;
-
+        
         //Assign DOM elements
         htmlDiv = $('#'+this.questionDiv)[0];
         this.questionField = htmlDiv.querySelector(".question-text");
@@ -69,19 +78,54 @@ var MAINAPP = (function(nsp, $, domU, strU) {
             case "fill-in":
                 this.populateTheQuestion = function() {
                     this.populateQuestion();
+                    htmlDiv.querySelector('textarea').value = "";
                 };
                 this.checkTheAnswer = function() {
                     console.log("fill-in");
-                    
+                    var ans,
+                        value = htmlDiv.querySelector('textarea').value;
+
+                    if (value !== "") {
+                        ans = strU.breakOut(this.correctResp, ",");
+                        this.correct = ans.every(function(val) {
+                            return (value.indexOf(val) > -1);
+                        });
+                        this.result = (this.correct) ? 'correct' : 'incorrect';
+                    }
+                    this.hideFeedback();
+                    this.displayFeedback();
                 };
                 break;
             case "multi-choice":
-                
+                var distractors = htmlDiv.querySelectorAll('label'),
+                    distractorsRadio = htmlDiv.querySelectorAll('input');
                 this.populateTheQuestion = function() {
-                    
+                    this.populateQuestion();
+                    domU.addClass(distractors, 'remove');
+                    for (let i = 0; i < distractors.length; i++) {
+                        if (this.distractorText[i] !== undefined) {
+                            distractors[i].innerHTML = this.distractorText[i];
+                            domU.removeClass([distractors[i]],'remove');
+                        }
+                    }
+                    for (let i = 0; i < distractorsRadio.length; i++) {
+                        distractorsRadio[i].checked = false;
+                    }
                 };
                 this.checkTheAnswer = function() {
-                    
+                    console.log("multi-choice");
+
+                    for (let i = 0; i < distractors.length; i++) {
+                        if (distractorsRadio[i].checked) {
+                            this.studentResp = $('#' + distractorsRadio[i].id + '_label')[0].innerHTML;
+                        }
+                    }
+                    if (this.studentResp !== "") {
+                        this.correct = this.studentResp === this.correctResp;
+                        this.result = (this.correct) ? 'correct' : 'incorrect';
+                    }
+                    this.hideFeedback();
+                    this.displayFeedback();
                 };
                 break;
             default:
@@ -91,9 +135,12 @@ var MAINAPP = (function(nsp, $, domU, strU) {
                 break;
         }
     };
-
     Question.prototype.displayQuestion = function() {
+        var checkTheAnswer = this.checkTheAnswer.bind(this);
         domU.removeClass([this.htmlDiv],'hidden-question');
+        domU.assignEvent(this.htmlDiv.querySelectorAll('.fill-in-submit.btn-primary'),'click', function() {
+            checkTheAnswer();
+        });
     };
     Question.prototype.hideQuestion = function() {
         domU.addClass([this.htmlDiv], 'hidden-question');
@@ -117,7 +164,78 @@ var MAINAPP = (function(nsp, $, domU, strU) {
 
     };
 
-    
+    //Setup Navigation Object
+    var setUpNavigation = function() {
+        var cQuestion = 0;
+        navigationProto = {
+            questionsArray: questionsArray,
+            totalQuestions: questionsArray.length,
+            hideQuestion: function() {
+                var curQuestion = this.questionsArray[this.currentQuestion];
+                curQuestion.hideQuestion();
+            },
+            showQuestion: function() {
+                var newQuestion = this.questionsArray[this.currentQuestion];
+                newQuestion.hideFeedback();
+                newQuestion.populateTheQuestion();
+                newQuestion.displayQuestion();
+            },
+            get currentQuestion() {
+                return cQuestion;
+            },
+            set currentQuestion(value) {
+                cQuestion = value;
+            }
+        };
+
+        nextBtn = Object.create(navigationProto);
+        nextBtn.goNext = function(e) {
+            if (this.currentQuestion < this.totalQuestions - 1){
+                this.hideQuestion();
+                this.currentQuestion = this.currentQuestion + 1;
+                this.showQuestion();
+            }
+            console.log(this.currentQuestion)
+        };
+        prevBtn = Object.create(navigationProto);
+        prevBtn.goPrev = function(e) {
+            console.log(this.currentQuestion);
+            if (this.currentQuestion > 0){
+                this.hideQuestion();
+                this.currentQuestion = this.currentQuestion - 1;
+                this.showQuestion();
+            }
+        };
+
+        $('.btn-prev')[0].addEventListener("click", function(e) {
+            prevBtn.goPrev(e);
+        });
+        $('.btn-next')[0].addEventListener("click", function(e) {
+            nextBtn.goNext(e);
+        });
+
+        navigationProto.showQuestion();
+        nsp.prevBtn = prevBtn;
+        nsp.nextBtn = nextBtn;
+    };
+
+    /*var checkAnswer = function(value) {
+        var ans,
+            correct,
+            result;
+
+        if (value !== "") {
+            ans = strU.breakOut(domU.data($('#q01'), 'answer'), ",");
+            correct = ans.every(function(val) {
+                return (value.indexOf(val) > -1);
+            });
+            result = (correct) ? 'correct' : 'incorrect';
+            displayFeedback(result);
+        } else {
+            displayFeedback('no-answer');
+        }
+    };*/
+
 
     /*
     Setup
@@ -127,8 +245,9 @@ var MAINAPP = (function(nsp, $, domU, strU) {
     });
 
     //Public Methods and Properties
-    nsp.initQuiz = initQuiz;
+    //nsp.displayFeedback = displayFeedback;
     
+
     return nsp;
     
 })(MAINAPP || {}, UTIL.dom.$, UTIL.dom, UTIL.string);
